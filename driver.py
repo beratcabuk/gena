@@ -45,7 +45,7 @@ class Driver:
         sent_last_message = bool(last_n[0].split(' ')[2][:-1] != self.contact_name)
         return (last_n_messages, sent_last_message)
 
-    def send_message(self, payload: str):
+    def send_message(self, payload: str) -> None:
         input_box = self.driver.find_element(By.CSS_SELECTOR, '._3Uu1_ > div:nth-child(1) > div:nth-child(1)')
         sleep(1)
         input_box.click()
@@ -55,6 +55,6 @@ class Driver:
             sleep(0.1)
         input_box.send_keys(Keys.ENTER)
 
-    def quit(self):
+    def quit(self) -> None:
         sleep(0.5)
         self.driver.quit()
