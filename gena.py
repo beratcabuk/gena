@@ -3,6 +3,7 @@ import sys
 from driver import Driver
 from chatbot import Bot
 
+
 # Initialize the driver and login to whatsaapp web.
 print('Welcome to GenA, your Generative AI powered personal assistant!\n')
 user_name = input("Please enter your full name and press ENTER...")

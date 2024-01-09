@@ -1,7 +1,9 @@
 from openai import OpenAI
 import json
+import os
 
-API_KEY = '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'
+
+API_KEY = os.environ.get("OPENAI_API_KEY")
 
 class Bot:
     def __init__(self, model:str, user_full_name:str) -> None:
