@@ -11,4 +11,6 @@
  OPENAI_API_KEY=<your-api-key-here>
  ```
 
-You currently use Gena by logging in via scanning the QR code it downloads, and stating a contact and an event. The driver does currently run in headless mode, so you can see the actions it takes live. You currently have to set up the Firefox driver by downloading [geckodriver](https://github.com/mozilla/geckodriver/releases/) and ensuring that it's findable from your PATH.
+You currently use Gena by logging in via scanning the QR code it downloads, and stating a contact and an event. The driver does currently 
+run in headless mode, so you can see the actions it takes live. You currently have to set up the Firefox driver by downloading 
+[geckodriver](https://github.com/mozilla/geckodriver/releases/) and ensuring that it's findable from your PATH.
