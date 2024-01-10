@@ -13,7 +13,7 @@ driver.save_qr()
 input('Press ENTER after scanning the QR code...\n')
 
 # Find the contact.
-contact_name = input("Please enter the exact name of the contact that you'd like to message, as it is saved in your WhatsApp, and press ENTER...\n")
+contact_name = input("Please enter the name of the contact that you'd like to message, and press ENTER...\n")
 driver.find_contact(contact_name)
 
 # Scroll up to load enough messages for context.

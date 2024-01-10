@@ -43,7 +43,7 @@ class Driver:
         last_n_messages = ''.join(last_n[::-1])
 
         # If the last message is not from the contact, we sent it.
-        sent_last_message = bool(last_n[0].split(' ')[2][:-1] != self.contact_name)
+        sent_last_message = bool(last_n[0].split(' ')[2][:].lower() not in self.contact_name.lower())
         return (last_n_messages, sent_last_message)
 
     def send_message(self, payload: str) -> None:

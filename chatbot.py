@@ -1,8 +1,10 @@
 from openai import OpenAI
 import json
 import os
+from dotenv import load_dotenv
 
 
+load_dotenv()
 API_KEY = os.environ.get("OPENAI_API_KEY")
 
 class Bot:
@@ -20,6 +22,7 @@ class Bot:
                                                 The output should just include the response message, no additional data.
                                                 Use the 'message' tag for the JSON object. You are designed to act as my secretary,
                                                 respond to the incoming messages on my behalf. Do not use any emojis or special characters.
+                                                Emulate my texting style, use all lowercase letters.
                                                 The objective of this conversation is this: {objective}.
                                                 The messages you will get will be in a fixed format: 
                                                 [HH:MM, DD/MM/YYYY] The name of the sender: The message. If the message is a 
