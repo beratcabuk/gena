@@ -5,6 +5,11 @@ from time import sleep
 
 
 WEBSITE_URL = 'https://web.whatsapp.com/'
+QR_CLASS_NAME = '_19vUU'
+SEARCH_BOX_CSS_SELECTOR = '.qh0vvdkp'
+CHAT_WINDOW_CSS_SELECTOR = '.n5hs2j7m'
+VISIBLE_MSGS_CLASS_NAME = 'cm280p3y.to2l77zo.n1yiu2zv.c6f98ldp.ooty25bp.oq31bsqd'
+MSG_INPUT_CSS_SELECTOR = '._3Uu1_ > div:nth-child(1) > div:nth-child(1)'
 
 class Driver:
     def __init__(self) -> None:
@@ -13,12 +18,12 @@ class Driver:
         sleep(10)
 
     def save_qr(self) -> None:
-        self.qr_element = self.driver.find_element(By.CLASS_NAME, '_19vUU')
+        self.qr_element = self.driver.find_element(By.CLASS_NAME, QR_CLASS_NAME)
         self.qr_element.screenshot(filename='qr.png')
     
     def find_contact(self, contact_name: str) -> None:
         self.contact_name = contact_name
-        self.search_box = self.driver.find_element(By.CSS_SELECTOR, '.qh0vvdkp')
+        self.search_box = self.driver.find_element(By.CSS_SELECTOR, SEARCH_BOX_CSS_SELECTOR)
         self.search_box.click()
         sleep(1)
 
@@ -29,11 +34,11 @@ class Driver:
     
     def scroll_up(self) -> None:
         for i in range(5):
-            self.driver.find_element(By.CSS_SELECTOR, '.n5hs2j7m').send_keys(Keys.PAGE_UP)
+            self.driver.find_element(By.CSS_SELECTOR, CHAT_WINDOW_CSS_SELECTOR).send_keys(Keys.PAGE_UP)
             sleep(0.5)
 
     def fetch_messaging_history(self, n_last_messages:int = 10) -> (str, bool):
-        self.visible_msgs = self.driver.find_elements(By.CLASS_NAME, 'cm280p3y.to2l77zo.n1yiu2zv.c6f98ldp.ooty25bp.oq31bsqd')
+        self.visible_msgs = self.driver.find_elements(By.CLASS_NAME, VISIBLE_MSGS_CLASS_NAME)
         last_n = []
         for i in range(1, n_last_messages + 1):
             msg = self.visible_msgs[-i].find_element(By.TAG_NAME, 'div')
@@ -47,7 +52,7 @@ class Driver:
         return (last_n_messages, sent_last_message)
 
     def send_message(self, payload: str) -> None:
-        input_box = self.driver.find_element(By.CSS_SELECTOR, '._3Uu1_ > div:nth-child(1) > div:nth-child(1)')
+        input_box = self.driver.find_element(By.CSS_SELECTOR, MSG_INPUT_CSS_SELECTOR)
         sleep(1)
         input_box.click()
         sleep(1)
