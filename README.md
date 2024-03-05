@@ -6,7 +6,7 @@
  Gena is a GENerative ai powered Assistant that sets up hangout sessions via WhatsApp messages.
  
 # A Quick Primer
- You need to set your own api key under a .env file. You can do this by adding the following line in the file.
+ You need to set your own api key under a .env file. You can do this by adding the following line in a .env file.
  ```
  OPENAI_API_KEY=<your-api-key-here>
  ```

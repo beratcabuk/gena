@@ -153,3 +153,5 @@ cython_debug/
 #.idea/
 *.ipynb
 qr.png
+.DS_Store
+geckodriver

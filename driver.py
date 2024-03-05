@@ -37,7 +37,7 @@ class Driver:
             self.driver.find_element(By.CSS_SELECTOR, CHAT_WINDOW_CSS_SELECTOR).send_keys(Keys.PAGE_UP)
             sleep(0.5)
 
-    def fetch_messaging_history(self, n_last_messages:int = 10) -> (str, bool):
+    def fetch_messaging_history(self, n_last_messages:int = 10) -> tuple[str, bool]:
         self.visible_msgs = self.driver.find_elements(By.CLASS_NAME, VISIBLE_MSGS_CLASS_NAME)
         last_n = []
         for i in range(1, n_last_messages + 1):
