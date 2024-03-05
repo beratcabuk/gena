@@ -6,7 +6,7 @@ from chatbot import Bot
 def main():
     # Initialize the driver and login to whatsaapp web.
     print('Welcome to GenA, your Generative AI powered personal assistant!\n')
-    user_name = input("Please enter your full name and press ENTER...")
+    user_name = input("Please enter your name and press ENTER...")
     input('Press ENTER to get the login QR code...\n')
     driver = Driver()
     driver.save_qr()
