@@ -13,14 +13,17 @@ def main():
     input('Press ENTER after scanning the QR code...\n')
 
     # Find the contact.
-    contact_name = input("Please enter the name of the contact that you'd like to message, and press ENTER...\n")
+    contact_name = input('''Please enter the name of the contact that you'd
+                         like to message, and press ENTER...\n''')
     driver.find_contact(contact_name)
 
     # Scroll up to load enough messages for context.
     driver.scroll_up()
 
     # The messaging logic.
-    conv_objective = input("Please state the event that you want to set-up with this person, and your availability. Then, press ENTER...\n")
+    conv_objective = input('''Please state the event that you want to set-up
+                           with this person, and your availability. Then, press
+                           ENTER...\n''')
     objective_achieved = False
     bot = Bot(model="gpt-4-1106-preview", user_full_name=user_name)
     while not objective_achieved:
