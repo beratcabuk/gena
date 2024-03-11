@@ -2,15 +2,18 @@ from time import sleep
 import sys
 from driver import Driver
 from chatbot import Bot
+import terminalmessages
 
 def main():
     # Initialize the driver and login to whatsaapp web.
-    print('Welcome to GenA, your Generative AI powered personal assistant!\n')
+
+    print(terminalmessages.SPLASH)
+    print(terminalmessages.INTRO)
     user_name = input("Please enter your name and press ENTER...")
-    input('Press ENTER to get the login QR code...\n')
+    input(terminalmessages.QR_BEFORE)
     driver = Driver()
     driver.save_qr()
-    input('Press ENTER after scanning the QR code...\n')
+    input(terminalmessages.QR_AFTER)
 
     # Find the contact.
     contact_name = input('''Please enter the name of the contact that you'd
@@ -35,7 +38,7 @@ def main():
         msg = bot.respond(payload=payload, objective=conv_objective)
 
         # This is the conversation end signal.
-        if '*123#' == msg[-5:]:
+        if bot.KILL_SIGNAL == msg[-5:]:
             msg = msg[:-5]
             objective_achieved = True
             driver.send_message(payload=msg)
@@ -43,7 +46,7 @@ def main():
 
         driver.send_message(payload=msg)
 
-    print('The objective you set is achieved.')
+    print(terminalmessages.SUCCESS)
     driver.quit()
     sys.exit(1)
 

@@ -2,6 +2,7 @@ from openai import OpenAI
 import json
 import os
 from dotenv import load_dotenv
+from secrets import token_hex
 
 
 load_dotenv()
@@ -12,6 +13,7 @@ class Bot:
         self.client = OpenAI(api_key=API_KEY)
         self.model = model
         self.user_full_name = user_full_name
+        self.KILL_SIGNAL = token_hex(3) # 3 bytes of random hexadecimal
     
     def respond(self, payload:str, objective:str) -> str:
         response = self.client.chat.completions.create(
@@ -31,7 +33,7 @@ class Bot:
                                                 you see refers to the contact I am messaging. You will be provided with the last 10 messages for context.
                                                 Please converse with the contact on my behalf by returning a response message as if you are me.
                                                 Once the objective is reached, but you have to send a final message, return *123# at the end of the message.
-                                                If the objective is reached, but you do not have to send another message, just return *123#."""},
+                                                If the objective is reached, but you do not have to send another message, just return {self.KILL_SIGNAL}."""},
                 {"role": "user", "content": payload}
             ]
             )
