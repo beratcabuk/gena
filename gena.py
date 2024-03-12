@@ -1,6 +1,6 @@
 from time import sleep
 import sys
-from driver import Driver
+from driver import WhatsAppWeb
 from chatbot import Bot
 import terminalmessages
 
@@ -11,17 +11,17 @@ def main():
     print(terminalmessages.INTRO)
     user_name = input("Please enter your name and press ENTER...")
     input(terminalmessages.QR_BEFORE)
-    driver = Driver()
-    driver.save_qr()
+    waweb = WhatsAppWeb()
+    waweb.save_qr()
     input(terminalmessages.QR_AFTER)
 
     # Find the contact.
     contact_name = input('''Please enter the name of the contact that you'd
                          like to message, and press ENTER...\n''')
-    driver.find_contact(contact_name)
+    waweb.find_contact(contact_name)
 
     # Scroll up to load enough messages for context.
-    driver.scroll_up()
+    waweb.scroll_up()
 
     # The messaging logic.
     conv_objective = input('''Please state the event that you want to set-up
@@ -30,7 +30,7 @@ def main():
     objective_achieved = False
     bot = Bot(model="gpt-4-1106-preview", user_full_name=user_name)
     while not objective_achieved:
-        payload, sent_last = driver.fetch_messaging_history()
+        payload, sent_last = waweb.fetch_messaging_history()
         if sent_last:  # To ensure that the chatbot does not spam.
             sleep(2)  # Waiting for a response to our message here.
             continue
@@ -41,13 +41,13 @@ def main():
         if bot.KILL_SIGNAL == msg[-5:]:
             msg = msg[:-5]
             objective_achieved = True
-            driver.send_message(payload=msg)
+            waweb.send_message(payload=msg)
             break
 
-        driver.send_message(payload=msg)
+        waweb.send_message(payload=msg)
 
     print(terminalmessages.SUCCESS)
-    driver.quit()
+    waweb.quit()
     sys.exit(1)
 
 if __name__ == '__main__':

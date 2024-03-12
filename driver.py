@@ -11,7 +11,7 @@ CHAT_WINDOW_CSS_SELECTOR = '.n5hs2j7m'
 VISIBLE_MSGS_CLASS_NAME = 'cm280p3y.to2l77zo.n1yiu2zv.c6f98ldp.ooty25bp.oq31bsqd'
 MSG_INPUT_CSS_SELECTOR = '._3Uu1_ > div:nth-child(1) > div:nth-child(1)'
 
-class Driver:
+class WhatsAppWeb:
     def __init__(self) -> None:
         self.driver = webdriver.Firefox()
         self.driver.get(WEBSITE_URL)
